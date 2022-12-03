@@ -7,6 +7,11 @@ import { userService, alertService } from '../../services';
 
 import Image from 'next/image';
 
+type Profile = {
+  name: string;
+  password: string;
+}
+
 export default function Login() {
   const router = useRouter();
 
@@ -18,10 +23,10 @@ export default function Login() {
   const formOptions = { resolver: yupResolver(validationSchema) };
 
   // get functions to build form with useForm() hook
-  const { register, handleSubmit, formState } = useForm(formOptions);
+  const { register, handleSubmit, formState } = useForm<Profile>(formOptions);
   const { errors } = formState;
 
-  function onSubmit({ name, password }: {name: string, password: string}): Promise<void> {
+  const onSubmit = ({ name, password }: Profile) => {
     return userService.login(name, password)
       .then(() => {
         // get return url from query parameters or default to '/'

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Instructions from './components/instructions'
 import Nav from '../components/Nav'
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function Home() {
@@ -30,19 +31,19 @@ export default function Home() {
 
   function addBurgerPatty() {
 
-    setArray((arr: any) => [...arr, { id: arr.length, element: <img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/${data[0].src}`} /> }])
+    setArray((arr: any) => [...arr, { id: uuidv4(), element: <img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/${data[0].src}`} /> }])
     console.log(array)
   }
 
   function addBacon() {
 
-    setArray((arr: any) => [...arr, { id: arr.length, element: <img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/${data[1].src}`} /> }])
+    setArray((arr: any) => [...arr, { id: uuidv4(), element: <img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/${data[1].src}`} /> }])
     console.log(array)
   }
 
   function addEgg() {
 
-    setArray((arr: any) => [...arr, { id: arr.length, element: <img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/${data[2].src}`} /> }])
+    setArray((arr: any) => [...arr, { id: uuidv4(), element: <img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/${data[2].src}`} /> }])
     console.log(array)
 
   }
