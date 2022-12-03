@@ -7,7 +7,6 @@ import "styles/instructions.css";
 
 import { userService } from "../services/user-service"
 import { Alert } from '../components';
-import Nav from '../components/Nav';
 
 export default function App({ Component, pageProps }: any) {
     const router = useRouter();

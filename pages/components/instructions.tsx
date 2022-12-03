@@ -1,4 +1,4 @@
-const Instructions = (handleClose) => {
+const Instructions = (handleClose: () => void) => {
   return (
     <div className="popup-box">
       <div className="box">
