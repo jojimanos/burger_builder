@@ -1,0 +1,65 @@
+.burgerTop{
+
+    background-size: 300px;
+    height: 110px;
+    width: 100%;
+    display: table;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.burgerBottom{
+
+    background-size: 300px;
+    height: 60px;
+    width: 100%;
+    display: table;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.lettuce{
+
+    background-size: 300px;
+    height: 27px;
+    width: 100%;
+    display: table;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.tomato{
+
+    background-size: 300px;
+    height: 20px;
+    width: 100%;
+    display: table;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.beef{
+
+    background-size: 300px;
+    height: 20px;
+    width: 100%;
+    display: table;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cheese{
+
+    background-size: 300px;
+    height: 20px;
+    width: 100%;
+    display: table;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.burgerContainer{
+    height: 290px;
+    width: 100%;
+    overflow: auto;
+}
