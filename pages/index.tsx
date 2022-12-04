@@ -76,7 +76,6 @@ export default function Home() {
     <div className='bg-stone-200 w-full min-h-screen max-h-max'>
       <div className='grid grid-rows-2'>
         <div>{Nav(popUpWindow, handleMouseOver, handleMouseOut, isHovering)}</div>
-        <div className='grid place-items-end pr-5'>{isHovering && <h2 className='bg-green-400 shadow-md shadow-green-800 '>Click here for app Information</h2>}</div>
       </div>
       <main>
         <div className='grid grid-cols-3 place-items-center sm:place-content-center'>
@@ -91,6 +90,7 @@ export default function Home() {
             <div className='py-2'><button onClick={() => { addBacon() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[1].name}</button></div>
             <div className='py-2'><button onClick={() => { addEgg() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[2].name}</button></div>
             <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}><button className={styles.neonText} onClick={popUpWindow}>?</button></div>
+            <div className='grid place-items-end pr-5'>{isHovering && <h2 className='bg-green-400 shadow-md shadow-green-800 '>Click here for app Information</h2>}</div>
           </div>
         </div>
       </main>
