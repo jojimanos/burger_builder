@@ -32,7 +32,16 @@
 
 .neonText {
   animation: flicker 1.5s infinite alternate;
-  color: #fff;
+  color: rgb(127, 143, 175);
+  font-size: 25vw;
+}
+
+@media only screen and (min-width: 400px) {
+  .neonText {
+    animation: flicker 1.5s infinite alternate;
+    color: rgb(127, 143, 175);
+    font-size: 5vw;
+  }
 }
 
 @keyframes flicker {
@@ -46,14 +55,14 @@
   100% {
 
     text-shadow:
-      0 0 4px #fff,
-      0 0 11px #fff,
-      0 0 19px #fff,
-      0 0 40px #0fa,
-      0 0 80px #0fa,
-      0 0 90px #0fa,
-      0 0 100px #0fa,
-      0 0 150px #0fa;
+      0 0 4px rgb(142, 101, 101),
+      0 0 11px rgb(142, 101, 101),
+      0 0 19px rgb(142, 101, 101),
+      0 0 40px red,
+      0 0 80px red,
+      0 0 90px red,
+      0 0 100px red,
+      0 0 150px red;
 
   }
 

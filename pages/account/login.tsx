@@ -42,12 +42,11 @@ export default function Login() {
         // Get return url from query parameters or default to '/'
         const returnUrl = router.query.returnUrl as unknown as URL || '/' as unknown as URL;
         router.push(returnUrl);
-      }).catch((error: any) => setError(error))
+      }).catch(() => setError("Check your credentials for typos."))
   }
 
   return (
     <div>
-      {error && (<div className='bg-red-500 text-center text-xl font-bold'>{error}</div>)}
       <div className='bg-stone-200 fixed w-full min-h-screen max-h-max'>
         <h1 className='text-center p-2 text-3xl bg-amber-700'>Burger Builder App</h1>
         <div className='grid grid-cols-1 sm:grid-cols-3'>
@@ -62,6 +61,9 @@ export default function Login() {
               <div className='text-red-500'>{errors.password?.message}</div>
               <div className='grid place-items-center'>
                 <button className="border-2 border-black p-2 font-bold text-black" disabled={formState.isSubmitting}>Login</button>
+              </div>
+              <div className='grid place-items-center'>
+                {error && (<div className='bg-red-500 text-center text-xl font-bold w-28'>{error}</div>)}
               </div>
             </form>
           </div>

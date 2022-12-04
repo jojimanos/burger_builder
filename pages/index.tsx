@@ -5,6 +5,8 @@ import Nav from './components/Nav'
 // Generates unique keys for each ingredient in the array
 import { v4 as uuidv4 } from 'uuid';
 
+import styles from '../styles/Home.module.css'
+
 export default function Home() {
 
   const dummy = localStorage.getItem("token")
@@ -88,6 +90,7 @@ export default function Home() {
             <div className='py-2'><button onClick={() => { addBurgerPatty() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[0].name}</button></div>
             <div className='py-2'><button onClick={() => { addBacon() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[1].name}</button></div>
             <div className='py-2'><button onClick={() => { addEgg() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[2].name}</button></div>
+            <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}><button className={styles.neonText} onClick={popUpWindow}>?</button></div>
           </div>
         </div>
       </main>

@@ -34,14 +34,12 @@ export default function Nav(onClick: () => void, handleMouseOver: () => void, ha
                                     <Link href="/">{Button("Reset")}</Link>
                                     <a onClick={logout}>{Button("Logout")}</a>
                                 </div>
-                                <div className='grid place-items-end'><button className={styles.neonText} onClick={onClick}>?</button></div>
                             </div>)}
                 </MediaQuery>
                 <MediaQuery minWidth={1024}>
                     <Link href="/">{Button("Reset")}</Link>
                     <div></div>
                     <a onClick={logout}>{Button("Logout")}</a>
-                    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}><button className={styles.neonText} onClick={onClick}>?</button></div>
                 </MediaQuery>
             </div>
         </div>
