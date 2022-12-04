@@ -1,12 +1,11 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-
+    
 import 'styles/globals.css';
 import "styles/instructions.css";
 
 import { userService } from "../services/user-service"
-import { Alert } from '../components';
 
 export default function App({ Component, pageProps }: any) {
     const router = useRouter();
@@ -34,9 +33,9 @@ export default function App({ Component, pageProps }: any) {
     }, []);
 
     function authCheck(url: any) {
-        // redirect to login page if accessing a private page and not logged in 
+        // redirect to login page if accessing the builder page and not logged in 
         setUser(userService.userValue);
-        const publicPaths = ['/account/login', '/account/register'];
+        const publicPaths = ['/account/login'];
         const path = url.split('?')[0];
         if (!userService.userValue && !publicPaths.includes(path)) {
             setAuthorized(false);
@@ -58,7 +57,6 @@ export default function App({ Component, pageProps }: any) {
             </Head>
 
             <div>
-                <Alert />
                 {authorized &&
                     <Component {...pageProps} />
                 }

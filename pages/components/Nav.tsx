@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MediaQuery from 'react-responsive'
 import Image from 'next/image';
 
 import Link from 'next/link';
-import { userService } from '../services/user-service';
+import { userService } from '../../services/user-service';
 
 import Button from './button';
 
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 
 export default function Nav(onClick: () => void, handleMouseOver: () => void, handleMouseOut: () => void, isHovering: boolean) {
+    
     const [user, setUser] = useState(null);
     const [menuButton, setMenuButton] = useState(false)
 
@@ -17,17 +18,9 @@ export default function Nav(onClick: () => void, handleMouseOver: () => void, ha
         setMenuButton(!menuButton)
     }
 
-    useEffect(() => {
-        const subscription = userService.user.subscribe(x => setUser(x));
-        return () => subscription.unsubscribe();
-    }, []);
-
     function logout() {
         userService.logout();
     }
-
-    // only show nav when logged in
-    if (!user) return null;
 
     return (
         <div className='bg-amber-700'>

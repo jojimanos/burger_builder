@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import Instructions from './components/instructions'
-import Nav from '../components/Nav'
-import { v4 as uuidv4 } from 'uuid';
+import Nav from './components/Nav'
 
+// Generates unique keys for each ingredient in the array
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Home() {
 
@@ -76,8 +77,8 @@ export default function Home() {
       <div className='grid place-items-end pr-5'>{isHovering && <h2 className='bg-green-400 shadow-md shadow-green-800 '>Click here for app Information</h2>}</div>
       </div>
       <main>
-        <div className='grid sm:grid-cols-2 place-items-center sm:place-content-center'>
-          <div className='w-72 sm:w-max'>
+        <div className='grid grid-cols-3 place-items-center sm:place-content-center'>
+          <div className='w-48 sm:w-max col-span-2'>
             <div>{<img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/bun_top.png`} />}</div>
             <div>{array.map((arr: any) => (<div id={arr.id} onClick={() => { removeBacon(arr.id) }}>{arr.element}</div>))}</div>
             <div>{<img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/bun_bottom.png`} />}</div>
