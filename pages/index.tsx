@@ -11,7 +11,7 @@ export default function Home() {
 
   const token = dummy?.replace(/"/g, "")
 
-  const [data, setData] = useState([{name: "", src: ""}, {name: "", src: ""}, {name: "", src: ""}]);
+  const [data, setData] = useState([{ name: "", src: "" }, { name: "", src: "" }, { name: "", src: "" }]);
 
   useEffect(() => {
     fetch('https://xm-crm-react-exercise-server.herokuapp.com/ingredients',
@@ -71,10 +71,10 @@ export default function Home() {
   };
 
   return (
-    <div className='bg-stone-200 w-full h-screen'>
+    <div className='bg-stone-200 w-full min-h-screen max-h-max'>
       <div className='grid grid-rows-2'>
-      <div>{Nav(popUpWindow, handleMouseOver, handleMouseOut, isHovering)}</div>
-      <div className='grid place-items-end pr-5'>{isHovering && <h2 className='bg-green-400 shadow-md shadow-green-800 '>Click here for app Information</h2>}</div>
+        <div>{Nav(popUpWindow, handleMouseOver, handleMouseOut, isHovering)}</div>
+        <div className='grid place-items-end pr-5'>{isHovering && <h2 className='bg-green-400 shadow-md shadow-green-800 '>Click here for app Information</h2>}</div>
       </div>
       <main>
         <div className='grid grid-cols-3 place-items-center sm:place-content-center'>
@@ -84,7 +84,7 @@ export default function Home() {
             <div>{<img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/bun_bottom.png`} />}</div>
           </div>
           {isOpen && (Instructions(popUpWindow))}
-          <div className='grid place-items-center h-12'>
+          <div className='grid place-items-center min-h-10 max-h-12'>
             <div className='py-2'><button onClick={() => { addBurgerPatty() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[0].name}</button></div>
             <div className='py-2'><button onClick={() => { addBacon() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[1].name}</button></div>
             <div className='py-2'><button onClick={() => { addEgg() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[2].name}</button></div>

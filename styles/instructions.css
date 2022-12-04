@@ -23,7 +23,6 @@
   }
    
   .close-icon {
-    content: 'x';
     cursor: pointer;
     position: fixed;
     right: calc(15% - 30px);
@@ -36,5 +35,6 @@
     text-align: center;
     border: 1px solid #999;
     font-size: 20px;
-    color: red;
+    background-color: white;
+    color: black;
   }

@@ -51,9 +51,8 @@ export default function App({ Component, pageProps }: any) {
     return (
         <>
             <Head>
-                <title>Burger App</title>
-                <meta name="Burger App" content="Build and taste your favourite burger!!!" />
-                <link rel="icon" href="/favicon.ico" />
+                <title>Burger Builder App</title>
+                <meta name="Burger BUilder App" content="Build and taste your favourite burger!!!" />
             </Head>
 
             <div>

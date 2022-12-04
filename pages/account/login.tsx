@@ -48,7 +48,7 @@ export default function Login() {
   return (
     <div>
       {error && (<div className='bg-red-500 text-center text-xl font-bold'>{error}</div>)}
-      <div className='bg-stone-200 fixed w-full h-screen'>
+      <div className='bg-stone-200 fixed w-full min-h-screen max-h-max'>
         <h1 className='text-center p-2 text-3xl bg-amber-700'>Burger Builder App</h1>
         <div className='grid grid-cols-1 sm:grid-cols-3'>
           <div className='hidden sm:grid sm:place-items-end'><Image alt='' src={"/cheeseBurger.png"} height={300} width={300} /></div>
