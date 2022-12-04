@@ -63,7 +63,7 @@ export default function Login() {
                 <button className="border-2 border-black p-2 font-bold text-black" disabled={formState.isSubmitting}>Login</button>
               </div>
               <div className='grid place-items-center'>
-                {error && (<div className='bg-red-500 text-center text-xl font-bold w-28'>{error}</div>)}
+                {error && (<div className='bg-red-500 text-center text-xl font-bold w-28 p-2 rounded-lg'>{error}</div>)}
               </div>
             </form>
           </div>
