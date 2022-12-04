@@ -73,24 +73,26 @@ export default function Home() {
   };
 
   return (
-    <div className='bg-stone-200 w-full min-h-screen max-h-max'>
-      <div className='grid grid-rows-2'>
-        <div>{Nav(popUpWindow, handleMouseOver, handleMouseOut, isHovering)}</div>
-      </div>
+    <div className='bg-stone-200 w-full min-h-screen max-h-max min-w-screen overflow-auto'>
+      <div className='pb-2'>{Nav(popUpWindow, handleMouseOver, handleMouseOut, isHovering)}</div>
       <main>
-        <div className='grid grid-cols-3 place-items-center sm:place-content-center'>
-          <div className='w-48 sm:w-max col-span-2'>
-            <div>{<img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/bun_top.png`} />}</div>
-            <div>{array.map((arr: any) => (<div id={arr.id} onClick={() => { removeBacon(arr.id) }}>{arr.element}</div>))}</div>
-            <div>{<img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/bun_bottom.png`} />}</div>
+        <div className='grid grid-cols-2'>
+          <div className='flex justify-end'>
+            <div className='w-48 sm:w-max'>
+              <div>{<img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/bun_top.png`} />}</div>
+              <div>{array.map((arr: any) => (<div id={arr.id} onClick={() => { removeBacon(arr.id) }}>{arr.element}</div>))}</div>
+              <div>{<img src={`https://xm-crm-react-exercise-server.herokuapp.com/img/bun_bottom.png`} />}</div>
+            </div>
           </div>
           {isOpen && (Instructions(popUpWindow))}
-          <div className='grid place-items-center min-h-10 max-h-12'>
-            <div className='py-2'><button onClick={() => { addBurgerPatty() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[0].name}</button></div>
-            <div className='py-2'><button onClick={() => { addBacon() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[1].name}</button></div>
-            <div className='py-2'><button onClick={() => { addEgg() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[2].name}</button></div>
-            <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}><button className={styles.neonText} onClick={popUpWindow}>?</button></div>
-            <div className='grid place-items-end pr-5'>{isHovering && <h2 className='bg-green-400 shadow-md shadow-green-800 '>Click here for app Information</h2>}</div>
+          <div className='flex justify-center'>
+            <div className='grid place-items-center min-h-10 max-h-12'>
+              <div className='py-2'><button onClick={() => { addBurgerPatty() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[0].name}</button></div>
+              <div className='py-2'><button onClick={() => { addBacon() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[1].name}</button></div>
+              <div className='py-2'><button onClick={() => { addEgg() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">{data[2].name}</button></div>
+              <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}><button className={styles.neonText} onClick={popUpWindow}>?</button></div>
+              <div className='grid place-items-end pr-5'>{isHovering && <h2 className='bg-green-400 shadow-md shadow-green-800 '>Click here for app Information</h2>}</div>
+            </div>
           </div>
         </div>
       </main>
