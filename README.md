@@ -18,4 +18,4 @@ npm run dev
 
 and open http://localhost:3000 in your browser to see the result.
 
-Before you can access the index.jsx page you will be redirected to the login page.
+Before you can access the index.tsx page you will be redirected to the login page.

@@ -15,7 +15,7 @@ export const userService = {
 function login(name, password) {
     return fetchWrapper.post("https://xm-crm-react-exercise-server.herokuapp.com/login", { name, password })
         .then(user => {
-            // setting the local storage item token for later API authentication
+            // Setting the local storage item token for later API authentication
             userSubject.next(user);
             localStorage.setItem('user', JSON.stringify(user))
             localStorage.setItem('token', JSON.stringify(user.token));
@@ -25,7 +25,7 @@ function login(name, password) {
 }
 
 function logout() {
-    // remove user from local storage, publish null to user subscribers and redirect to login page
+    // Remove user from local storage, publish null to user subscribers and redirect to login page
     localStorage.removeItem('user');
     userSubject.next(null);
     Router.push('/account/login');

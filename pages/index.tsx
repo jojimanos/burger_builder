@@ -75,7 +75,7 @@ export default function Home() {
 
   return (
     <div className='bg-stone-200 w-full min-h-screen max-h-max min-w-screen overflow-auto'>
-      <div className='pb-2'>{Nav(popUpWindow, handleMouseOver, handleMouseOut, isHovering)}</div>
+      <div className='pb-2'>{Nav()}</div>
       <MediaQuery maxWidth={640}>
         <main>
           <div className='grid grid-cols-2'>

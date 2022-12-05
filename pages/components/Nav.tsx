@@ -7,7 +7,7 @@ import { userService } from '../../services/user-service';
 
 import Button from './button';
 
-export default function Nav(onClick: () => void, handleMouseOver: () => void, handleMouseOut: () => void, isHovering: boolean) {
+export default function Nav() {
 
     const [user, setUser] = useState(null);
     const [menuButton, setMenuButton] = useState(false)

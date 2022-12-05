@@ -17,7 +17,7 @@ function post(url, body) {
 // helper functions
 
 function authHeader(url) {
-    // return auth header with jwt if user is logged in and request is to the api url
+    // Return auth header with jwt if user is logged in and request is to the api url
     const user = userService.userValue;
     const isLoggedIn = user && user.token && token;
     if (isLoggedIn) {
