@@ -7,7 +7,7 @@ const userSubject = new BehaviorSubject(process.window && JSON.parse(localStorag
 
 export const userService = {
     user: userSubject.asObservable(),
-    get userValue () { return userSubject.value },
+    get userValue() { return userSubject.value },
     login,
     logout,
 };
