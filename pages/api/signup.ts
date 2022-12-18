@@ -8,6 +8,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const salt = bcrypt.genSaltSync()
     const { email, password } = req.body
 
+    console.log(email)
+
     let user
 
     try {

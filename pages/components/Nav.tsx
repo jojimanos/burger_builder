@@ -7,7 +7,7 @@ import { userService } from '../../services/user-service';
 
 import Button from './button';
 
-export default function Nav() {
+export default function Nav(emptyArray: any) {
 
     const [user, setUser] = useState(null);
     const [menuButton, setMenuButton] = useState(false)
@@ -26,11 +26,11 @@ export default function Nav() {
                 <div className="px-3 h-20">
                     <div className='flex justify-start'>
                         <button onClick={isActive}><Image alt='' src={'/burgerMenu.png'} height={50} width={50} />
-                        <p>Menu</p></button>
+                            <p>Menu</p></button>
                         {menuButton &&
                             (
                                 <div className='grid grid-rows-2 px-2'>
-                                    <Link href="/">{Button("Reset")}</Link>
+                                    <button onClick={() => { emptyArray() }}>{Button("Reset")}</button>
                                     <a onClick={logout}>{Button("Logout")}</a>
                                 </div>
                             )}
@@ -40,7 +40,7 @@ export default function Nav() {
             <MediaQuery minWidth={641}>
                 <div className="px-3 h-7">
                     <div className='flex justify-end'>
-                        <Link className='px-2' href="/">{Button("Reset")}</Link>
+                        <button className='px-2' onClick={() => { emptyArray() }}>{Button("Reset")}</button>
                         <div className='flex justify-start px-2' onClick={logout}>{Button("Logout")}</div>
                     </div>
                 </div>

@@ -9,10 +9,15 @@ import { userService } from "../services/user-service"
 
 export default function App({ Component, pageProps }: any) {
     const router = useRouter();
-    const [user, setUser] = useState(null);
     const [authorized, setAuthorized] = useState(false);
 
+    interface User {
+        email: string;
+    }
+
     useEffect(() => {
+
+        
         // On initial load - run auth check 
         authCheck(router.asPath);
 
@@ -32,11 +37,13 @@ export default function App({ Component, pageProps }: any) {
     }, []);
 
     function authCheck(url: any) {
-        // Redirect to login page if accessing the builder page and not logged in 
-        setUser(userService.userValue);
-        const publicPaths = ['/account/login'];
+
+        const userString = localStorage.getItem('user') as string
+        const user = JSON.parse(userString) as User;
+        // Redirect to public paths if accessing the builder page and not logged in 
+        const publicPaths = ['/account/login', '/account/signup'];
         const path = url.split('?')[0];
-        if (!userService.userValue && !publicPaths.includes(path)) {
+        if (!user && !publicPaths.includes(path)) {
             setAuthorized(false);
             router.push({
                 pathname: '/account/login',

@@ -12,8 +12,8 @@ export const userService = {
     logout,
 };
 
-function login(name, password) {
-    return fetchWrapper.post("https://xm-crm-react-exercise-server.herokuapp.com/login", { name, password })
+function login(email, password) {
+    return fetchWrapper.post(`${window.location.origin}/api/signin`, { email, password })
         .then(user => {
             // Setting the local storage item token for later API authentication
             userSubject.next(user);
