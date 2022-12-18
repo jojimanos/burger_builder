@@ -51,7 +51,7 @@ export default function Login() {
     router.push('/')
     console.log(email, password)
 
-    localStorage.setItem('user', JSON.stringify(email))
+    localStorage.setItem('user', JSON.stringify({email}))
   }
 
   return (

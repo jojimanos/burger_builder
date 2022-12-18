@@ -11,12 +11,7 @@ export default function App({ Component, pageProps }: any) {
     const router = useRouter();
     const [authorized, setAuthorized] = useState(false);
 
-    interface User {
-        email: string;
-    }
-
     useEffect(() => {
-
         
         // On initial load - run auth check 
         authCheck(router.asPath);
@@ -39,7 +34,7 @@ export default function App({ Component, pageProps }: any) {
     function authCheck(url: any) {
 
         const userString = localStorage.getItem('user') as string
-        const user = JSON.parse(userString) as User;
+        const user = JSON.parse(userString)
         // Redirect to public paths if accessing the builder page and not logged in 
         const publicPaths = ['/account/login', '/account/signup'];
         const path = url.split('?')[0];
