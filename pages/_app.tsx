@@ -5,8 +5,6 @@ import { useRouter } from 'next/router';
 import 'styles/globals.css';
 import "styles/instructions.css";
 
-import { userService } from "../services/user-service"
-
 export default function App({ Component, pageProps }: any) {
     const router = useRouter();
     const [authorized, setAuthorized] = useState(false);
@@ -34,7 +32,7 @@ export default function App({ Component, pageProps }: any) {
     function authCheck(url: any) {
 
         const userString = localStorage.getItem('user') as string
-        const user = JSON.parse(userString)
+        const user = JSON.stringify(userString)
         // Redirect to public paths if accessing the builder page and not logged in 
         const publicPaths = ['/account/login', '/account/signup'];
         const path = url.split('?')[0];

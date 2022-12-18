@@ -94,7 +94,7 @@ export default function Home() {
             <div className='flex justify-end'>
               <div className='w-64'>
                 <div><Image alt='' src={'/top.jpg'} width={400} height={400} /></div>
-                <div>{array.map((arr: any) => (<div id={arr.id} onClick={() => { removeIngredient(arr.id) }}>{arr.element}</div>))}</div>
+                <div>{array.map((arr: any) => (<div key={arr} id={arr.id} onClick={() => { removeIngredient(arr.id) }}>{arr.element}</div>))}</div>
                 <div><Image alt='' src={'/bottom.jpg'} width={400} height={400} /></div>
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function Home() {
             <div className='flex justify-end'>
               <div className='w-max'>
                 <div><Image alt='' src={'/top.jpg'} width={400} height={400} /></div>
-                <div>{array.map((arr: any) => (<div id={arr.id} onClick={() => { removeIngredient(arr.id) }}>{arr.element}</div>))}</div>
+                <div>{array.map((arr: any) => (<div key={arr} id={arr.id} onClick={() => { removeIngredient(arr.id) }}>{arr.element}</div>))}</div>
                 <div><Image alt='' src={'/bottom.jpg'} width={400} height={400} /></div>
               </div>
             </div>

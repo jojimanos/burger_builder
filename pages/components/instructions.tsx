@@ -7,7 +7,7 @@ const Instructions = (handleClose: () => void) => {
         the most delicious burgers in the universe, this is the right place to
         get them. Just click on the ingredients bellow in whichever row you wish.
         And if you want to remove an item, no big deal. Just click on the image And
-        boom, it's gone!
+        boom, it is gone!
       </div>
     </div>
   );

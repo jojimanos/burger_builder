@@ -9,7 +9,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 // Services
-import { userService } from '../../services/user-service';
 import Link from 'next/link';
 import { auth } from '../../lib/mutations';
 
