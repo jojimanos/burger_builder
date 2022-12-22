@@ -34,12 +34,12 @@ export default function App({ Component, pageProps }: any) {
         const userString = localStorage.getItem('user') as string
         const user = JSON.stringify(userString)
         // Redirect to public paths if accessing the builder page and not logged in 
-        const publicPaths = ['/account/login', '/account/signup'];
+        const publicPaths = [`${window.location.origin}/account/login`, `${window.location.origin}/account/signup`];
         const path = url.split('?')[0];
         if (!user && !publicPaths.includes(path)) {
             setAuthorized(false);
             router.push({
-                pathname: '/account/login',
+                pathname: `${window.location.origin}/account/login`,
                 query: { returnUrl: router.asPath }
             });
         } else {
