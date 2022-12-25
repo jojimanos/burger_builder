@@ -32,20 +32,23 @@ export default function App({ Component, pageProps }: any) {
     function authCheck(url: any) {
 
         const userString = localStorage.getItem('user') as string
-        const user = JSON.stringify(userString)
+        const user = JSON.parse(JSON.stringify(userString))
         // Redirect to public paths if accessing the builder page and not logged in 
-        const publicPaths = [`${window.location.origin}/account/login`, `${window.location.origin}/account/signup`];
+        const publicPaths = [`/account/login`, `/account/signup`];
         const path = url.split('?')[0];
         if (!user && !publicPaths.includes(path)) {
             setAuthorized(false);
             router.push({
-                pathname: `${window.location.origin}/account/login`,
+                pathname: `/account/login`,
                 query: { returnUrl: router.asPath }
             });
         } else {
             setAuthorized(true);
         }
+        console.log(user)
     }
+
+    console.log(authorized)
 
     return (
         <>

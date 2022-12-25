@@ -17,21 +17,6 @@ export default function Home() {
 
   const [data, setData] = useState([{ name: "", src: "" }, { name: "", src: "" }, { name: "", src: "" }]);
 
-  useEffect(() => {
-    fetch('https://xm-crm-react-exercise-server.herokuapp.com/ingredients',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          "Authorization": `Bearer ${token}`,
-        }
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => { setData(data) });
-
-    console.log(data)
-  }, [])
-
   const [array, setArray]: any = useState([])
 
   function addLettuce() {
