@@ -4,9 +4,12 @@ import { useRouter } from 'next/router';
     
 import 'styles/globals.css';
 import "styles/instructions.css";
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebaseConfig';
 
 export default function App({ Component, pageProps }: any) {
     const router = useRouter();
+    //const [user, setUser] = useState(null);
     const [authorized, setAuthorized] = useState(false);
 
     useEffect(() => {
@@ -34,9 +37,13 @@ export default function App({ Component, pageProps }: any) {
         const userString = localStorage.getItem('user') as string
         const user = JSON.parse(JSON.stringify(userString))
         // Redirect to public paths if accessing the builder page and not logged in 
+        //onAuthStateChanged(auth, (currentUser) => {
+           // setUser(currentUser)
+        //})
+        //const userEmail = JSON.parse(JSON.stringify(user))
         const publicPaths = [`/account/login`, `/account/signup`];
         const path = url.split('?')[0];
-        if (!user && !publicPaths.includes(path)) {
+        if (user === null && !publicPaths.includes(path)) {
             setAuthorized(false);
             router.push({
                 pathname: `/account/login`,
@@ -58,7 +65,8 @@ export default function App({ Component, pageProps }: any) {
             </Head>
 
             <div>
-                {authorized &&
+                {
+                authorized &&
                     <Component {...pageProps} />
                 }
             </div>

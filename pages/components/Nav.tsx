@@ -5,19 +5,33 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { userService } from '../../services/user-service';
 
+import {signOut} from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
+
 import Button from './button';
+import Router, { useRouter } from 'next/router';
 
 export default function Nav(emptyArray: any) {
 
     const [user, setUser] = useState(null);
     const [menuButton, setMenuButton] = useState(false)
+    const [error, setError] = useState('')
 
     const isActive = () => {
         setMenuButton(!menuButton)
     }
 
-    function logout() {
-        userService.logout();
+    const router = useRouter()
+
+    const logout= async () => {
+        try {
+       await signOut(auth);
+    localStorage.removeItem('user');
+    router.push('/account/login')
+        }
+        catch {
+            setError("Unable to logout")
+        }
     }
 
     return (

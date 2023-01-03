@@ -3,19 +3,18 @@ import { useState } from 'react';
 import Image from 'next/image';
 import MediaQuery from 'react-responsive';
 
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import {auth} from '../../firebaseConfig'
+
 // Validation mods
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-// Services
-import { auth } from '../../lib/mutations';
-
-export default function Login() {
+export default function Signup() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  const mode = 'signup'
+  const [user, setUser] = useState('')
 
   // Show consoles error on top of the screen
   const [error, setError] = useState("")
@@ -30,19 +29,23 @@ export default function Login() {
     email: Yup.string().required('email is required'),
     password: Yup.string().min(6, 'must be at least 6 characters').required('Password is required')
   });
-  const formOptions = { resolver: yupResolver(validationSchema) };
 
-  const onSubmit = async (e: any) => {
+const onSubmit = async (e: any) => {
     e.preventDefault()
 
-    await auth(mode, { email, password })
-    router.push('/account/login')
-    console.log(email, password)
-
-  }
+try {
+  const user = await createUserWithEmailAndPassword(auth, email, password);
+console.log(user)
+setUser(JSON.stringify(user))
+} catch {
+  setError("Failed to create an account")
+} 
+ //   router.push('/account/login')
+  };
 
   return (
     <div>
+      <div>{user}</div>
       <div className='bg-stone-200 min-h-screen max-h-max'>
         <h1 className='text-center p-2 text-3xl bg-amber-700'>Burger Builder App</h1>
         <MediaQuery maxWidth={640}>
@@ -56,7 +59,7 @@ export default function Login() {
                 <input className='focus:shadow-md focus:shadow-teal-500' type="password" onChange={(e) => setPassword(e.target.value)} />
                 <div className='text-red-500'>{ }</div>
                 <div className='grid place-items-center'>
-                  <button className="border-2 border-black p-2 font-bold text-black" >Signup</button>
+                  <button className="border-2 border-black p-2 font-bold text-black">Signup</button>
                 </div>
                 <div className='grid place-items-center'>
                   {error && (<div className='bg-red-500 text-center text-xl font-bold w-28 p-2 rounded-lg'>{error}</div>)}

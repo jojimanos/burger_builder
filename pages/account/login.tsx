@@ -1,57 +1,42 @@
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Image from 'next/image';
 import MediaQuery from 'react-responsive';
-
-// Validation mods
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
 
 // Services
 import Link from 'next/link';
-import { auth } from '../../lib/mutations';
 
-type Profile = {
-  email: string;
-  password: string;
-}
 
 export default function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  const mode: string = 'signin'
+  const [emailError, setEmailError] = useState(false)
+  const [passwordError, setPasswordError] = useState(false)
+  const [user, setUser] = useState({});
 
   // Show consoles error on top of the screen
   const [error, setError] = useState("")
 
-  // Error disappears after 5 secs
+  // Error disappears after 5 secs  
   setTimeout(() => { setError("") }, 5000)
 
   const router = useRouter();
 
-  // Rules for form validation 
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().required('email is required'),
-    password: Yup.string().required('Password is required')
-  });
-  const formOptions = { resolver: yupResolver(validationSchema) };
-
-  // Functions used to build form with useForm() hook
-  const { register, handleSubmit, formState } = useForm<Profile>(formOptions);
-  const { errors } = formState;
-
   const onSubmit = async (e: any) => {
     e.preventDefault()
 
-    await auth(mode, {email, password})
-    router.push('/')
-    console.log(email, password)
-
-    localStorage.setItem('user', JSON.stringify({email}))
-  }
+try {
+  const user = await signInWithEmailAndPassword(auth, email, password);
+console.log(user)
+const userId = localStorage.setItem("user", JSON.stringify(user))
+} catch {
+setError('There was an error when signing in.')
+} 
+     router.push('/')
+  };
 
   return (
     <div>
@@ -60,15 +45,15 @@ export default function Login() {
         <MediaQuery maxWidth={640}>
           <div className='grid grid-cols-1'>
             <div className="grid place-items-center text-center grid-row-7 py-3 px-8 gap-3">
-              <form className='shadow-2xl shadow-black p-3 grid grid-row-3 py-3 gap-3' onSubmit={onSubmit}>
+              <form className='shadow-2xl shadow-black p-3 grid grid-row-3 py-3 gap-3' onSubmit={onSubmit} >
                 <label className=' text-black font-bold'>Name</label>
                 <input className='focus:shadow-md focus:shadow-teal-500' type="text" onChange={(e) => setEmail(e.target.value)} />
-                <div className='text-red-500'>{errors.email?.message}</div>
+                {emailError && <div className='text-red-500'>Email is invalid</div>}
                 <label className='text-black font-bold'>Password</label>
                 <input className='focus:shadow-md focus:shadow-teal-500' type="password" onChange={(e) => setPassword(e.target.value)} />
-                <div className='text-red-500'>{errors.password?.message}</div>
+                {passwordError && <div className='text-red-500'>Password is invalid</div>}
                 <div className='grid grid-cols-2 place-items-center'>
-                  <button className="border-2 border-black p-2 font-bold text-black" disabled={formState.isSubmitting}>Login</button>
+                  <button className="border-2 border-black p-2 font-bold text-black" >Login</button>
                   <Link href={'/account/signup'}><button className="border-2 border-black p-2 font-bold text-black">Not a member?</button></Link>
                 </div>
                 <div className='grid place-items-center'>
@@ -85,13 +70,11 @@ export default function Login() {
             <div className="flex justify-center text-center grid-row-7 py-3 px-8 gap-3">
               <form className='shadow-2xl shadow-black p-3 grid grid-row-3 py-3 gap-3' onSubmit={onSubmit}>
                 <label className=' text-black font-bold'>Name</label>
-                <input className='focus:shadow-md focus:shadow-teal-500' type="email" onChange={(e) => {setEmail(e.target.value)}} />
-                <div className='text-red-500'>{errors.email?.message}</div>
+                <input className='focus:shadow-md focus:shadow-teal-500' type="email" onChange={(e) => setEmail(e.target.value)} />
                 <label className='text-black font-bold'>Password</label>
-                <input className='focus:shadow-md focus:shadow-teal-500' type="password" onChange={(e) => {setPassword(e.target.value)}} />
-                <div className='text-red-500'>{errors.password?.message}</div>
+                <input className='focus:shadow-md focus:shadow-teal-500' type="password" onChange={(e) => setPassword(e.target.value)} />
                 <div className='grid grid-cols-2 place-items-center'>
-                  <button className="border-2 border-black p-2 font-bold text-black" disabled={formState.isSubmitting}>Login</button>
+                  <button className="border-2 border-black p-2 font-bold text-black">Login</button>
                   <Link href={'/account/signup'}><button className="border-2 border-black p-2 font-bold text-black">Not a member?</button></Link>
                 </div>
                 <div className='grid place-items-center'>
