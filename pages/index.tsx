@@ -8,8 +8,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 import styles from '../styles/Home.module.css'
 import MediaQuery from 'react-responsive';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
+import { type } from 'os';
 
 export default function Home() {
 
@@ -17,10 +18,11 @@ export default function Home() {
 
   const token = dummy?.replace(/"/g, "")
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({});
 
    onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
+    if (currentUser !== null){
+    setUser(currentUser);}
   })
 
   const [data, setData] = useState([{ name: "", src: "" }, { name: "", src: "" }, { name: "", src: "" }]);
@@ -78,9 +80,11 @@ export default function Home() {
     setIsHovering(false);
   };
 
+  const displayUser = JSON.parse(JSON.stringify(user))
+
   return (
     <div className='bg-stone-200 w-full min-h-screen max-h-max min-w-screen overflow-auto'>
-      {user?.email}
+      <div>{displayUser.email}</div>
       <div className='pb-2'>{Nav(emptyArray)}</div>
       <MediaQuery maxWidth={640}>
         <main>
