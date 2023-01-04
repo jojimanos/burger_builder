@@ -10,13 +10,8 @@ import styles from '../styles/Home.module.css'
 import MediaQuery from 'react-responsive';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
-import { type } from 'os';
 
 export default function Home() {
-
-  const dummy = localStorage.getItem("token")
-
-  const token = dummy?.replace(/"/g, "")
 
   const [user, setUser] = useState({});
 
@@ -24,8 +19,6 @@ export default function Home() {
     if (currentUser !== null){
     setUser(currentUser);}
   })
-
-  const [data, setData] = useState([{ name: "", src: "" }, { name: "", src: "" }, { name: "", src: "" }]);
 
   const [array, setArray]: any = useState([])
 
@@ -84,8 +77,7 @@ export default function Home() {
 
   return (
     <div className='bg-stone-200 w-full min-h-screen max-h-max min-w-screen overflow-auto'>
-      <div>{displayUser.email}</div>
-      <div className='pb-2'>{Nav(emptyArray)}</div>
+      <div className='pb-2'>{Nav(emptyArray, displayUser)}</div>
       <MediaQuery maxWidth={640}>
         <main>
           <div className='grid grid-cols-2'>
