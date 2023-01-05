@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Instructions from './components/instructions'
 import Nav from './components/Nav'
 import Image from 'next/image';
@@ -8,17 +8,19 @@ import { v4 as uuidv4 } from 'uuid';
 
 import styles from '../styles/Home.module.css'
 import MediaQuery from 'react-responsive';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { onAuthStateChanged, } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 
 export default function Home() {
 
   const [user, setUser] = useState({});
 
-   onAuthStateChanged(auth, (currentUser) => {
+  useEffect(() => {
+onAuthStateChanged(auth, (currentUser) => {
     if (currentUser !== null){
     setUser(currentUser);}
   })
+  }, [])
 
   const [array, setArray]: any = useState([])
 
