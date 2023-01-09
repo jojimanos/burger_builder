@@ -5,10 +5,7 @@ import MediaQuery from 'react-responsive';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import {auth} from '../../firebaseConfig'
-
-// Validation mods
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
+import Link from 'next/link';
 
 export default function Signup() {
 
@@ -18,6 +15,8 @@ export default function Signup() {
 
   // Show consoles error on top of the screen
   const [error, setError] = useState("")
+  const [emailError, setEmailError] = useState(false)
+  const [passwordError, setPasswordError] = useState(false)
 
   // Error disappears after 5 secs
   setTimeout(() => { setError("") }, 5000)
@@ -25,27 +24,45 @@ export default function Signup() {
   const router = useRouter();
 
   // Rules for form validation 
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().required('email is required'),
-    password: Yup.string().min(6, 'must be at least 6 characters').required('Password is required')
-  });
+  const validationSchema = () => {
+    let emailValid = true 
+    let passworValid = true
+    let ValidSchema = true
+    setEmailError(false)
+    setPasswordError(false)
+
+    if (email === "") {
+      emailValid = false
+     ValidSchema = false 
+     setEmailError(true)
+    }
+    if (password.length < 6) {
+      passworValid = false
+     ValidSchema = false 
+     setPasswordError(true)
+    }
+    return ValidSchema
+  };
 
 const onSubmit = async (e: any) => {
     e.preventDefault()
-
+    let isValid = validationSchema()
+    
+    if (isValid){
 try {
   const user = await createUserWithEmailAndPassword(auth, email, password);
 console.log(user)
 setUser(JSON.stringify(user))
 } catch {
   setError("Failed to create an account")
-} 
- //   router.push('/account/login')
+}
+  router.push('/account/login')
+    } 
+ 
   };
 
   return (
     <div>
-      <div>{user}</div>
       <div className='bg-stone-200 min-h-screen max-h-max'>
         <h1 className='text-center p-2 text-3xl bg-amber-700'>Burger Builder App</h1>
         <MediaQuery maxWidth={640}>
@@ -54,12 +71,13 @@ setUser(JSON.stringify(user))
               <form className='shadow-2xl shadow-black p-3 grid grid-row-3 py-3 gap-3' onSubmit={onSubmit}>
                 <label className=' text-black font-bold'>Name</label>
                 <input className='focus:shadow-md focus:shadow-teal-500' type="email" onChange={(e) => setEmail(e.target.value)} />
-                <div className='text-red-500'>{ }</div>
+                <div className='text-red-500'>{emailError && 'Email is not valid'}</div>
                 <label className='text-black font-bold'>Password</label>
                 <input className='focus:shadow-md focus:shadow-teal-500' type="password" onChange={(e) => setPassword(e.target.value)} />
-                <div className='text-red-500'>{ }</div>
-                <div className='grid place-items-center'>
+                <div className='text-red-500'>{passwordError && 'Password is not valid'}</div>
+                <div className='grid grid-cols-2 place-items-center'>
                   <button className="border-2 border-black p-2 font-bold text-black">Signup</button>
+                  <Link href={'/account/login'}><button className="border-2 border-black p-2 font-bold text-black">Alredy a member?</button></Link>
                 </div>
                 <div className='grid place-items-center'>
                   {error && (<div className='bg-red-500 text-center text-xl font-bold w-28 p-2 rounded-lg'>{error}</div>)}
@@ -76,12 +94,13 @@ setUser(JSON.stringify(user))
               <form className='shadow-2xl shadow-black p-3 grid grid-row-3 py-3 gap-3' onSubmit={onSubmit}>
                 <label className=' text-black font-bold'>Name</label>
                 <input className='focus:shadow-md focus:shadow-teal-500' type="email" onChange={(e) => setEmail(e.target.value)} />
-                <div className='text-red-500'>{ }</div>
+                <div className='text-red-500'>{emailError}</div>
                 <label className='text-black font-bold'>Password</label>
                 <input className='focus:shadow-md focus:shadow-teal-500' type="password" onChange={(e) => setPassword(e.target.value)} />
-                <div className='text-red-500'>{ }</div>
-                <div className='grid place-items-center'>
+                <div className='text-red-500'>{passwordError}</div>
+                <div className='grid grid-cols-2 place-items-center'>
                   <button className="border-2 border-black p-2 font-bold text-black" >Signup</button>
+                  <Link href={'/account/login'}><button className="border-2 border-black p-2 font-bold text-black">Already a member?</button></Link>
                 </div>
                 <div className='grid place-items-center'>
                   {error && (<div className='bg-red-500 text-center text-xl font-bold w-28 p-2 rounded-lg'>{error}</div>)}
