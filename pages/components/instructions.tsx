@@ -8,6 +8,10 @@ const Instructions = (handleClose: () => void) => {
         get them. Just click on the ingredients bellow in whichever row you wish.
         And if you want to remove an item, no big deal. Just click on the image And
         boom, it is gone!
+<br/>
+<br/>
+        Did I tell you the best part? Click on the orders button to view your 
+        previous orders and repeat them in just a few seconds!
       </div>
     </div>
   );

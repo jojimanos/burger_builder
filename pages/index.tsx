@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Instructions from './components/instructions'
 import Nav from './components/Nav'
 import Image from 'next/image';
+import orderList from './components/orderList'
 
 // Generates unique keys for each ingredient in the array
 import { v4 as uuidv4 } from 'uuid';
@@ -10,7 +11,7 @@ import styles from '../styles/Home.module.css'
 import MediaQuery from 'react-responsive';
 import { onAuthStateChanged, } from 'firebase/auth';
 import { auth, database } from '../firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 export default function Home() {
 
@@ -21,6 +22,10 @@ export default function Home() {
   const [cheese, setCheese] = useState(0);
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
+  const [viewOrders, setViewOrders] = useState(false)
+  const [ordersArray, setOrdersArray]: any = useState([]);
+
+  console.log("Order's page", viewOrders)
 
   useEffect(() => {
 onAuthStateChanged(auth, (currentUser) => {
@@ -102,6 +107,21 @@ setCheese(0);
   const displayUser = JSON.parse(JSON.stringify(user))
 
   const dbInstance = collection(database, 'orders')
+const getOrders = () => {
+         getDocs(dbInstance)
+            .then((data) => {
+                setOrdersArray(data.docs.map((item) => {
+                    return { ...item.data(), id: item.id }
+                }));
+            })
+      }
+  
+      const userOrders = ordersArray.filter((order: any) => order.email === displayUser.email)
+  
+      useEffect(() => {
+        getOrders()
+      }, [])
+  
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
@@ -120,7 +140,7 @@ setCheese(0);
 
   return (
     <div className='bg-stone-200 w-full min-h-screen max-h-max min-w-screen overflow-auto'>
-      <div className='pb-2'>{Nav(emptyArray, displayUser)}</div>
+      <div className='pb-2'>{Nav(emptyArray, displayUser, setViewOrders, viewOrders)}</div>
       <MediaQuery maxWidth={640}>
         <main>
           <div className='grid grid-cols-2'>
@@ -133,6 +153,7 @@ setCheese(0);
               </div>
             </div>
             {isOpen && (Instructions(popUpWindow))}
+            {viewOrders && (orderList(setViewOrders, viewOrders, userOrders, addLettuce, addTomato, addMeat, addCheese))}
             <div className='flex justify-center'>
               <div className='grid place-items-center min-h-10 max-h-12'>
                 <form onSubmit={handleSubmit}>
@@ -161,6 +182,7 @@ setCheese(0);
               </div>
             </div>
             {isOpen && (Instructions(popUpWindow))}
+            {viewOrders && (orderList(setViewOrders, viewOrders, userOrders, addLettuce, addTomato, addMeat, addCheese))}
             <div className='flex justify-center'>
               <div className='grid place-items-center min-h-10 max-h-12'>
                 <form onSubmit={handleSubmit}>
