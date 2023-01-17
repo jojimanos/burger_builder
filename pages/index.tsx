@@ -36,33 +36,48 @@ onAuthStateChanged(auth, (currentUser) => {
 
   const [array, setArray]: any = useState([])
 
-  function addLettuce() {
+  const items = 0 
 
-    setArray((arr: any) => [...arr, { id: uuidv4(), key: 'lettuce', element: <div><Image alt='' src={'/lettuce.jpg'} width={400} height={400} /></div> }])
-    console.log(array)
-    setLettuce(lettuce + 1)
+  function addLettuce(items: number) {
+
+    if (!items) {
+      items = 1
+    }
+    setArray((arr: any) => [...arr, { id: uuidv4(), key: 'lettuce', element: <div><Image alt='' src={'/lettuce.jpg'} width={400} height={400} /></div> }]);
+    console.log(array);
+    setLettuce(lettuce + items)
+    
   }
 
-  function addTomato() {
+  function addTomato(items: number) {
 
-    setArray((arr: any) => [...arr, { id: uuidv4(), element: <div><Image alt='' src={'/tomato.jpg'} width={400} height={400} /></div> }])
+    if (!items) {
+      items = 1
+    }
+    setArray((arr: any) => [...arr, { id: uuidv4(), key: 'tomato', element: <div><Image alt='' src={'/tomato.jpg'} width={400} height={400} /></div> }])
     console.log(array)
-    setTomato(tomato + 1)
+    setTomato(tomato + items)
   }
 
-  function addMeat() {
+  function addMeat(items: number) {
 
-    setArray((arr: any) => [...arr, { id: uuidv4(), element: <div><Image alt='' src={'/meat.jpg'} width={400} height={400} /></div> }])
+    if (!items) {
+      items = 1
+    }
+    setArray((arr: any) => [...arr, { id: uuidv4(), key: 'meat', element: <div><Image alt='' src={'/meat.jpg'} width={400} height={400} /></div> }])
     console.log(array)
-    setMeat(meat + 1)
+    setMeat(meat + items)
 
   }
 
-  function addCheese() {
+  function addCheese(items: number) {
 
-    setArray((arr: any) => [...arr, { id: uuidv4(), element: <div><Image alt='' src={'/cheese.jpg'} width={400} height={400} /></div> }])
+    if (!items) {
+      items = 1
+    }
+    setArray((arr: any) => [...arr, { id: uuidv4(), key: 'cheese', element: <div><Image alt='' src={'/cheese.jpg'} width={400} height={400} /></div> }])
     console.log(array)
-    setCheese(cheese + 1)
+    setCheese(cheese + items)
 
   }
 
@@ -81,11 +96,7 @@ onAuthStateChanged(auth, (currentUser) => {
   }
 
   function emptyArray() {
-    setArray([]);
-    setLettuce(0);
-setTomato(0);
-setMeat(0);
-setCheese(0);
+    setArray([]), (setLettuce(0)), (setTomato(0)), (setMeat(0)), (setCheese(0))
   }
 
   const [isOpen, setIsOpen] = useState(false);
@@ -153,14 +164,14 @@ const getOrders = () => {
               </div>
             </div>
             {isOpen && (Instructions(popUpWindow))}
-            {viewOrders && (orderList(setViewOrders, viewOrders, userOrders, addLettuce, addTomato, addMeat, addCheese))}
+            {viewOrders && (orderList(setViewOrders, viewOrders, userOrders, addLettuce, addTomato, addMeat, addCheese, emptyArray))}
             <div className='flex justify-center'>
               <div className='grid place-items-center min-h-10 max-h-12'>
                 <form onSubmit={handleSubmit}>
-                <div className='py-2'><button type='button'onClick={() => { addLettuce() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Lettuce</button><span className='pl-2 text-xl text-gray-800'>{lettuce}</span></div>
-                <div className='py-2'><button type='button'onClick={() => { addTomato() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Tomato</button><span className='pl-2 text-xl text-gray-800'>{tomato}</span></div>
-                <div className='py-2'><button type='button'onClick={() => { addMeat() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Meat</button><span className='pl-2 text-xl text-gray-800'>{meat}</span></div>
-                <div className='py-2'><button type='button'onClick={() => { addCheese() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Cheese</button><span className='pl-2 text-xl text-gray-800'>{cheese}</span></div>
+                <div className='py-2'><button type='button'onClick={() => { addLettuce(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Lettuce</button><span className='pl-2 text-xl text-gray-800'>{lettuce}</span></div>
+                <div className='py-2'><button type='button'onClick={() => { addTomato(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Tomato</button><span className='pl-2 text-xl text-gray-800'>{tomato}</span></div>
+                <div className='py-2'><button type='button'onClick={() => { addMeat(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Meat</button><span className='pl-2 text-xl text-gray-800'>{meat}</span></div>
+                <div className='py-2'><button type='button'onClick={() => { addCheese(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Cheese</button><span className='pl-2 text-xl text-gray-800'>{cheese}</span></div>
                 <button className='bg-black p-1 rounded-md border-2 border-gray-500' type='submit'>Submit your Order</button>
                 </form>
                 <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}><button className={styles.neonText} onClick={popUpWindow}>?</button></div>
@@ -182,14 +193,14 @@ const getOrders = () => {
               </div>
             </div>
             {isOpen && (Instructions(popUpWindow))}
-            {viewOrders && (orderList(setViewOrders, viewOrders, userOrders, addLettuce, addTomato, addMeat, addCheese))}
+            {viewOrders && (orderList(  setViewOrders, viewOrders, userOrders, addLettuce, addTomato, addMeat, addCheese, emptyArray))}
             <div className='flex justify-center'>
               <div className='grid place-items-center min-h-10 max-h-12'>
                 <form onSubmit={handleSubmit}>
-                <div className='py-2'><button type='button' onClick={() => { addLettuce() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Lettuce</button><span className='pl-2 text-xl text-gray-800'>{lettuce}</span></div>
-                <div className='py-2'><button type='button' onClick={() => { addTomato() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Tomato</button><span className='pl-2 text-xl text-gray-800'>{tomato}</span></div>
-                <div className='py-2'><button type='button' onClick={() => { addMeat() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Meat</button><span className='pl-2 text-xl text-gray-800'>{meat}</span></div>
-                <div className='py-2'><button type='button' onClick={() => { addCheese() }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Cheese</button><span className='pl-2 text-xl text-gray-800'>{cheese}</span></div>
+                <div className='py-2'><button type='button' onClick={() => { addLettuce(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Lettuce</button><span className='pl-2 text-xl text-gray-800'>{lettuce}</span></div>
+                <div className='py-2'><button type='button' onClick={() => { addTomato(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Tomato</button><span className='pl-2 text-xl text-gray-800'>{tomato}</span></div>
+                <div className='py-2'><button type='button' onClick={() => { addMeat(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Meat</button><span className='pl-2 text-xl text-gray-800'>{meat}</span></div>
+                <div className='py-2'><button type='button' onClick={() => { addCheese(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Cheese</button><span className='pl-2 text-xl text-gray-800'>{cheese}</span></div>
                 <button className='bg-black p-1 rounded-md border-2 border-gray-500' type='submit'>Submit your Order</button>
                 </form>
                 <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}><button className={styles.neonText} onClick={popUpWindow}>?</button></div>
