@@ -43,7 +43,7 @@ export default function Nav(emptyArray: any, displayUser: any, setViewOrders: an
                         {menuButton &&
                             (
                                 <div className='grid grid-rows-3 col-span-1 px-2'>
-                                    <div onClick={() => {setViewOrders(!viewOrders)}} >{Button("Orders")}</div>
+                                    <div onClick={() => {setViewOrders(!viewOrders)}}>{Button("Orders")}</div>
                                     <div onClick={() => { emptyArray() }}>{Button("Reset")}</div>
                                     <div onClick={logout}>{Button("Logout")}</div>
                                 </div>

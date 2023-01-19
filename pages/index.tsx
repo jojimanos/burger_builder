@@ -172,7 +172,7 @@ const getOrders = () => {
                 <div className='py-2'><button type='button'onClick={() => { addTomato(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Tomato</button><span className='pl-2 text-xl text-gray-800'>{tomato}</span></div>
                 <div className='py-2'><button type='button'onClick={() => { addMeat(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Meat</button><span className='pl-2 text-xl text-gray-800'>{meat}</span></div>
                 <div className='py-2'><button type='button'onClick={() => { addCheese(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Cheese</button><span className='pl-2 text-xl text-gray-800'>{cheese}</span></div>
-                <button className='bg-black p-1 rounded-md border-2 border-gray-500' type='submit'>Submit your Order</button>
+                <button className='bg-black text-white p-1 rounded-md border-2 border-gray-500' type='submit'>Submit your Order</button>
                 </form>
                 <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}><button className={styles.neonText} onClick={popUpWindow}>?</button></div>
                 <div className='grid place-items-end pr-5'>{isHovering && <h2 className='bg-green-400 shadow-md shadow-green-800 '>Click here for app Information</h2>}</div>
@@ -201,7 +201,7 @@ const getOrders = () => {
                 <div className='py-2'><button type='button' onClick={() => { addTomato(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Tomato</button><span className='pl-2 text-xl text-gray-800'>{tomato}</span></div>
                 <div className='py-2'><button type='button' onClick={() => { addMeat(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Meat</button><span className='pl-2 text-xl text-gray-800'>{meat}</span></div>
                 <div className='py-2'><button type='button' onClick={() => { addCheese(items) }} className="text-2xl font-extrabold text-zinc-400/80 hover:text-3xl">Cheese</button><span className='pl-2 text-xl text-gray-800'>{cheese}</span></div>
-                <button className='bg-black p-1 rounded-md border-2 border-gray-500' type='submit'>Submit your Order</button>
+                <button className='bg-black text-white p-1 rounded-md border-2 border-gray-500' type='submit'>Submit your Order</button>
                 </form>
                 <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}><button className={styles.neonText} onClick={popUpWindow}>?</button></div>
                 <div className='grid place-items-end pr-5'>{isHovering && <h2 className='bg-green-400 shadow-md shadow-green-800 '>Click here for app Information</h2>}</div>
