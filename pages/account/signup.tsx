@@ -53,7 +53,7 @@ export default function Signup() {
     e.preventDefault();
     let isValid = validationSchema();
 
-    if (signInType === "email and password") {
+    if (signInType == "email and password") {
       if (isValid) {
         try {
           const user = await createUserWithEmailAndPassword(
@@ -139,7 +139,7 @@ export default function Signup() {
         </MediaQuery>
         <MediaQuery minWidth={641}>
           <div className="grid grid-cols-3 gap-2">
-            <div className="flex justify-end">
+            <div className="flex self-end justify-end">
               <Image
                 alt=""
                 src={"/cheeseBurger.png"}
@@ -158,19 +158,23 @@ export default function Signup() {
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <div className="text-red-500">{emailError}</div>
+                <div className="text-red-500">
+                  {emailError && "Email is not valid."}
+                </div>
                 <label className="text-black font-bold">Password</label>
                 <input
                   className="focus:shadow-md focus:shadow-teal-500"
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="text-red-500">{passwordError}</div>
+                <div className="text-red-500">
+                  {passwordError && "Password is not valid."}
+                </div>
                 <div className="grid grid-cols-2 place-items-center">
                   <button
                     onClick={() => {
                       setSignInType("email and password");
-                      console.log(signInType);
+                      console.log(signInType, emailError, passwordError);
                     }}
                     className="border-2 border-black p-2 font-bold text-black"
                   >
@@ -206,7 +210,7 @@ export default function Signup() {
                 </div>
               </form>
             </div>
-            <div className="flex justify-start">
+            <div className="flex self-end justify-start">
               <Image
                 alt=""
                 src={"/cheeseBurger.png"}
