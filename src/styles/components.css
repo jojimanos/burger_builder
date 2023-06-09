@@ -1,0 +1,12 @@
+.button {
+    border-bottom: 2px solid rgb(56 189 248);
+    width: 3.5rem;
+    height: 1.75rem;
+    text-align: center;
+
+}
+
+.button:hover {
+    color: black;
+    background-image: linear-gradient(to bottom, rgb(253 230 138), #fef3c7);
+}

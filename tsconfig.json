@@ -15,6 +15,15 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/account/registerPage.jsx", "pages/account/loginPage.jsx", "pages/index.ξsx", "pages/components/place.jsx", "provider/authProvider.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/account/registerPage.jsx",
+    "src/pages/account/loginPage.jsx",
+    "src/pages/index.ξsx",
+    "src/pages/components/place.jsx",
+    "src/provider/authProvider.jsx"
+  ],
   "exclude": ["node_modules"]
 }
