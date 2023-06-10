@@ -7,7 +7,7 @@ type AuthButtonProps = {
 
 const AuthButton: React.FC<AuthButtonProps> = ({ text, onClickFunction }) => {
   return (
-    <button onClick={() => onClickFunction} className="authButton">
+    <button onClick={onClickFunction} className="authButton">
       {text}
     </button>
   );

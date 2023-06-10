@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { SetStateAction } from "react";
 import AuthButton from "./authButtons";
 import Input from "./input";
+import { Url } from "url";
 
 type FormProps = {
   onSubmit: (e: any) => Promise<void>;
@@ -10,6 +11,11 @@ type FormProps = {
   error: string;
   emailError: boolean;
   passwordError: boolean;
+  route: string;
+  text: {
+    currentMode: string;
+    otherMode: string;
+  };
 };
 
 const Form: React.FC<FormProps> = ({
@@ -19,11 +25,13 @@ const Form: React.FC<FormProps> = ({
   error,
   emailError,
   passwordError,
+  route,
+  text,
 }) => {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="formContainer">
       <form onSubmit={onSubmit} className="form">
         <Input text="Name" setField={setEmail} />
         {emailError && <div className="text-red-500">Email is invalid</div>}
@@ -32,10 +40,10 @@ const Form: React.FC<FormProps> = ({
           <div className="text-red-500">Password is invalid</div>
         )}
         <div className="authButtonContainer">
-          <AuthButton text={"Login"} />
+          <AuthButton text={text.currentMode} />
           <AuthButton
-            // onClickFunction={router.push("/signup")}
-            text={"Not a member"}
+            onClickFunction={() => router.push(route)}
+            text={text.otherMode}
           />
         </div>
         <div className="grid place-items-center">

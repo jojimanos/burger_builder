@@ -85,57 +85,17 @@ export default function Signup() {
           Burger Builder App
         </h1>
         <MediaQuery maxWidth={640}>
-          <div className="grid grid-cols-1">
-            <div className="grid place-items-center text-center grid-row-7 py-3 px-8 gap-3">
-              <form
-                className="shadow-2xl shadow-black p-3 grid grid-row-3 py-3 gap-3"
-                onSubmit={onSubmit}
-              >
-                <label className=" text-black font-bold">Name</label>
-                <input
-                  className="focus:shadow-md focus:shadow-teal-500"
-                  type="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <div className="text-red-500">
-                  {emailError && "Email is not valid"}
-                </div>
-                <label className="text-black font-bold">Password</label>
-                <input
-                  className="focus:shadow-md focus:shadow-teal-500"
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <div className="text-red-500">
-                  {passwordError && "Password is not valid"}
-                </div>
-                <div className="grid grid-cols-2 place-items-center">
-                  <button className="border-2 border-black p-2 font-bold text-black">
-                    Signup
-                  </button>
-                  <Link href={"/login"}>
-                    <button className="border-2 border-black p-2 font-bold text-black">
-                      Alredy a member?
-                    </button>
-                  </Link>
-                </div>
-                <div className="grid place-items-center">
-                  {error && (
-                    <div className="bg-red-500 text-center text-xl font-bold w-28 p-2 rounded-lg">
-                      {error}
-                    </div>
-                  )}
-                </div>
-              </form>
-              <AuthForm
-                onSubmit={onSubmit}
-                setEmail={setEmail}
-                setPassword={setPassword}
-                error={error}
-                passwordError={passwordError}
-                emailError={emailError}
-              />
-            </div>
+          <div className="formContainer">
+            <AuthForm
+              onSubmit={onSubmit}
+              setEmail={setEmail}
+              setPassword={setPassword}
+              error={error}
+              passwordError={passwordError}
+              emailError={emailError}
+              route={"./login"}
+              text={{ currentMode: "Signup", otherMode: "Already a member?" }}
+            />
             <div className="flex justify-center">
               <Image
                 alt=""
