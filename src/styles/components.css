@@ -1,12 +1,46 @@
 .button {
-    border-bottom: 2px solid rgb(56 189 248);
-    width: 3.5rem;
-    height: 1.75rem;
-    text-align: center;
-
+  border-bottom: 2px solid rgb(56 189 248);
+  width: 3.5rem;
+  height: 1.75rem;
+  text-align: center;
 }
 
 .button:hover {
-    color: black;
-    background-image: linear-gradient(to bottom, rgb(253 230 138), #fef3c7);
+  color: black;
+  background-image: linear-gradient(to bottom, rgb(253 230 138), #fef3c7);
+}
+
+.authButton {
+  border: 2px solid black;
+  padding: 0.5rem;
+  font-weight: 700;
+  color: black;
+}
+
+.authButtonContainer {
+  display: grid;
+  grid-column: auto;
+  place-items: center;
+}
+
+.inputContainer {
+  display: grid;
+  grid-column: auto;
+}
+
+.inputText {
+  color: black;
+  font-weight: 700;
+}
+
+.input:focus {
+  box-shadow: 0px 4px 6px -1px #14b8a6;
+}
+
+.form {
+  box-shadow: 0 25px 50px -12px rgb(0 0 0);
+  padding: 0.75rem;
+  display: grid;
+  grid-row: auto;
+  gap: 0.75rem;
 }

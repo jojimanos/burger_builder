@@ -7,6 +7,8 @@ import { auth } from "../../firebaseConfig";
 
 // Services
 import Link from "next/link";
+import Input from "../components/input";
+import AuthForm from "../components/authForm";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -73,10 +75,7 @@ export default function Login() {
         <MediaQuery maxWidth={640}>
           <div className="grid grid-cols-1">
             <div className="grid place-items-center text-center grid-row-7 py-3 px-8 gap-3">
-              <form
-                className="shadow-2xl shadow-black p-3 grid grid-row-3 py-3 gap-3"
-                onSubmit={onSubmit}
-              >
+              <form className="form" onSubmit={onSubmit}>
                 <label className=" text-black font-bold">Name</label>
                 <input
                   className="focus:shadow-md focus:shadow-teal-500"
@@ -96,13 +95,9 @@ export default function Login() {
                   <div className="text-red-500">Password is invalid</div>
                 )}
                 <div className="grid grid-cols-2 place-items-center">
-                  <button className="border-2 border-black p-2 font-bold text-black">
-                    Login
-                  </button>
-                  <Link href={"/account/signup"}>
-                    <button className="border-2 border-black p-2 font-bold text-black">
-                      Not a member?
-                    </button>
+                  <button className="authButton">Login</button>
+                  <Link href={"/signup"}>
+                    <button className="authButton">Not a member?</button>
                   </Link>
                 </div>
                 <div className="grid place-items-center">
@@ -113,6 +108,13 @@ export default function Login() {
                   )}
                 </div>
               </form>
+              <AuthForm
+                setEmail={setEmail}
+                setPassword={setPassword}
+                error={error}
+                emailError={emailError}
+                passwordError={passwordError}
+              />
             </div>
             <div className="flex justify-center">
               <Image
@@ -168,7 +170,7 @@ export default function Login() {
                   <button className="border-2 border-black p-2 font-bold text-black">
                     Login
                   </button>
-                  <Link href={"/account/signup"}>
+                  <Link href={"/signup"}>
                     <button className="border-2 border-black p-2 font-bold text-black">
                       Not a member?
                     </button>

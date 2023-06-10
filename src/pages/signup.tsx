@@ -7,6 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseConfig";
 import Link from "next/link";
+import AuthForm from "../components/authForm";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -66,7 +67,7 @@ export default function Signup() {
         } catch {
           setError("Failed to create an account");
         }
-        router.push("/account/login");
+        router.push("/login");
       }
     } else {
       try {
@@ -112,7 +113,7 @@ export default function Signup() {
                   <button className="border-2 border-black p-2 font-bold text-black">
                     Signup
                   </button>
-                  <Link href={"/account/login"}>
+                  <Link href={"/login"}>
                     <button className="border-2 border-black p-2 font-bold text-black">
                       Alredy a member?
                     </button>
@@ -126,6 +127,14 @@ export default function Signup() {
                   )}
                 </div>
               </form>
+              <AuthForm
+                onSubmit={onSubmit}
+                setEmail={setEmail}
+                setPassword={setPassword}
+                error={error}
+                passwordError={passwordError}
+                emailError={emailError}
+              />
             </div>
             <div className="flex justify-center">
               <Image
