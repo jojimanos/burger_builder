@@ -90,11 +90,17 @@ export default function Signup() {
               onSubmit={onSubmit}
               setEmail={setEmail}
               setPassword={setPassword}
+              setSignInType={setSignInType}
               error={error}
               passwordError={passwordError}
               emailError={emailError}
               route={"./login"}
-              text={{ currentMode: "Signup", otherMode: "Already a member?" }}
+              text={{
+                currentMode: "Signup",
+                otherMode: "Already a member?",
+                googleMode: "SignUp with Google",
+              }}
+              signInType={signInType}
             />
             <div className="flex justify-center">
               <Image
@@ -106,6 +112,13 @@ export default function Signup() {
             </div>
           </div>
         </MediaQuery>
+        <div className="grid place-items-center">
+          {error && (
+            <div className="bg-red-500 text-center text-xl font-bold w-28 p-2 rounded-lg">
+              {error}
+            </div>
+          )}
+        </div>
         <MediaQuery minWidth={641}>
           <div className="grid grid-cols-3 gap-2">
             <div className="flex self-end justify-end">
@@ -116,68 +129,23 @@ export default function Signup() {
                 width={300}
               />
             </div>
-            <div className="flex justify-center text-center grid-row-7 py-3 px-8 gap-3">
-              <form
-                className="shadow-2xl shadow-black p-3 grid grid-row-3 py-3 gap-3"
+            <div className="formContainer">
+              <AuthForm
                 onSubmit={onSubmit}
-              >
-                <label className=" text-black font-bold">Name</label>
-                <input
-                  className="focus:shadow-md focus:shadow-teal-500"
-                  type="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <div className="text-red-500">
-                  {emailError && "Email is not valid."}
-                </div>
-                <label className="text-black font-bold">Password</label>
-                <input
-                  className="focus:shadow-md focus:shadow-teal-500"
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <div className="text-red-500">
-                  {passwordError && "Password is not valid."}
-                </div>
-                <div className="grid grid-cols-2 place-items-center">
-                  <button
-                    onClick={() => {
-                      setSignInType("email and password");
-                      console.log(signInType, emailError, passwordError);
-                    }}
-                    className="border-2 border-black p-2 font-bold text-black"
-                  >
-                    Signup
-                  </button>
-                  <Link href={"/account/login"}>
-                    <button className="border-2 border-black p-2 font-bold text-black">
-                      Already a member?
-                    </button>
-                  </Link>
-                </div>
-                <div className="text-black font-bold">
-                  <div className="align-content-end">OR</div>
-                </div>
-                <div>
-                  <button
-                    onClick={() => {
-                      setSignInType("google");
-
-                      console.log(signInType);
-                    }}
-                    className="border-2 border-black p-2 font-bold text-black"
-                  >
-                    SignUp with Google
-                  </button>
-                </div>
-                <div className="grid place-items-center">
-                  {error && (
-                    <div className="bg-red-500 text-center text-xl font-bold w-28 p-2 rounded-lg">
-                      {error}
-                    </div>
-                  )}
-                </div>
-              </form>
+                setEmail={setEmail}
+                setPassword={setPassword}
+                setSignInType={setSignInType}
+                error={error}
+                passwordError={passwordError}
+                emailError={emailError}
+                route={"./login"}
+                text={{
+                  currentMode: "Signup",
+                  otherMode: "Already a member?",
+                  googleMode: "SignUp with Google",
+                }}
+                signInType={signInType}
+              />
             </div>
             <div className="flex self-end justify-start">
               <Image

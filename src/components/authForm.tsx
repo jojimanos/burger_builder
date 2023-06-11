@@ -2,12 +2,12 @@ import { useRouter } from "next/router";
 import React, { SetStateAction } from "react";
 import AuthButton from "./authButtons";
 import Input from "./input";
-import { Url } from "url";
 
 type FormProps = {
   onSubmit: (e: any) => Promise<void>;
   setEmail: React.Dispatch<SetStateAction<string>>;
   setPassword: React.Dispatch<SetStateAction<string>>;
+  setSignInType: React.Dispatch<SetStateAction<string | undefined>>;
   error: string;
   emailError: boolean;
   passwordError: boolean;
@@ -15,6 +15,7 @@ type FormProps = {
   text: {
     currentMode: string;
     otherMode: string;
+    googleMode: string;
   };
 };
 
@@ -22,6 +23,7 @@ const Form: React.FC<FormProps> = ({
   onSubmit,
   setEmail,
   setPassword,
+  setSignInType,
   error,
   emailError,
   passwordError,
@@ -46,6 +48,15 @@ const Form: React.FC<FormProps> = ({
             text={text.otherMode}
           />
         </div>
+        {router.pathname === "/signup" ? (
+          <div className="googleAuthContainer">
+            <div>OR</div>
+            <AuthButton
+              onClickFunction={setSignInType}
+              text={text.googleMode}
+            />
+          </div>
+        ) : null}
         <div className="grid place-items-center">
           {error && (
             <div className="bg-red-500 text-center text-xl font-bold w-28 p-2 rounded-lg">

@@ -55,21 +55,19 @@ const Navbar: React.FC<NavbarProps> = ({
           <div>
             {menuButton && (
               <div className="grid grid-rows-3 col-span-1 px-2">
-                <div
-                  onClick={() => {
+                <Button
+                  onClickFunction={() => {
                     setViewOrders(!viewOrders);
                   }}
-                >
-                  {<Button text={"Orders"} />}
-                </div>
-                <div
-                  onClick={() => {
+                  text={"Orders"}
+                />
+                <Button
+                  onClickFunction={() => {
                     emptyArray();
                   }}
-                >
-                  {<Button text={"Reset"} />}
-                </div>
-                <div onClick={logout}>{<Button text={"Logout"} />}</div>
+                  text={"Reset"}
+                />
+                <Button onClickFunction={logout} text={"Logout"} />
               </div>
             )}
           </div>

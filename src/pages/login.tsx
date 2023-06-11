@@ -111,40 +111,17 @@ export default function Login() {
                 width={300}
               />
             </div>
-            <div className="flex justify-center text-center grid-row-7 py-3 px-8 gap-3">
-              <form
-                className="shadow-2xl shadow-black p-3 grid grid-row-3 py-3 gap-3"
+            <div className="formContainer">
+              <AuthForm
                 onSubmit={onSubmit}
-              >
-                <label className=" text-black font-bold">Name</label>
-                <input
-                  className="focus:shadow-md focus:shadow-teal-500"
-                  type="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                {emailError && (
-                  <div className="text-red-500">Email is invalid</div>
-                )}
-                <label className="text-black font-bold">Password</label>
-                <input
-                  className="focus:shadow-md focus:shadow-teal-500"
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {passwordError && (
-                  <div className="text-red-500">Password is invalid</div>
-                )}
-                <div className="grid grid-cols-2 place-items-center">
-                  <button className="border-2 border-black p-2 font-bold text-black">
-                    Login
-                  </button>
-                  <Link href={"/signup"}>
-                    <button className="border-2 border-black p-2 font-bold text-black">
-                      Not a member?
-                    </button>
-                  </Link>
-                </div>
-              </form>
+                setEmail={setEmail}
+                setPassword={setPassword}
+                error={error}
+                emailError={emailError}
+                passwordError={passwordError}
+                route={"./signup"}
+                text={{ currentMode: "Login", otherMode: "Not a member?" }}
+              />
             </div>
             <div className="flex justify-start">
               <Image

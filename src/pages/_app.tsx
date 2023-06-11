@@ -34,11 +34,7 @@ export default function App({ Component, pageProps }: any) {
   function authCheck(url: any) {
     const userString = localStorage.getItem("user") as string;
     const user = JSON.parse(JSON.stringify(userString));
-    // Redirect to public paths if accessing the builder page and not logged in
-    //onAuthStateChanged(auth, (currentUser) => {
-    // setUser(currentUser)
-    //})
-    //const userEmail = JSON.parse(JSON.stringify(user))
+
     const publicPaths = [`/login`, `/signup`];
     const path = url.split("?")[0];
     if (user === null && !publicPaths.includes(path)) {
