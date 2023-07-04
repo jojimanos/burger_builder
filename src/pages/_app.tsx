@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import "../styles/globals.css";
 import "../styles/instructions.css";
 import "../styles/components.css";
+import "../styles/authPages.css";
+import "../styles/imageContainers.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
 

@@ -1,0 +1,9 @@
+.burgerImage {
+  position: relative;
+}
+
+@media screen and (max-width: 640px) {
+  .burgerImage {
+    position: absolute;
+  }
+}

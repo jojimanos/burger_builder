@@ -68,10 +68,8 @@ export default function Login() {
 
   return (
     <div>
-      <div className="bg-stone-200 min-h-screen max-h-max">
-        <h1 className="text-center p-2 text-3xl bg-amber-700">
-          Burger Builder App
-        </h1>
+      <div className="authContainer">
+        <h1 className="navbar">Burger Builder App</h1>
         <MediaQuery maxWidth={640}>
           <div className="formContainer">
             <AuthForm

@@ -1,0 +1,6 @@
+.authContainer {
+  min-height: 100vh;
+  max-height: max-content;
+  background-color: #0a1249;
+  color: white;
+}
