@@ -80,8 +80,8 @@ export default function Signup() {
 
   return (
     <div>
-      <div className="bg-stone-200 min-h-screen max-h-max">
-        <h1 className="text-center p-2 text-3xl bg-amber-700">
+      <div className="authContainer">
+        <h1 className="navbar">
           Burger Builder App
         </h1>
         <MediaQuery maxWidth={640}>
@@ -100,7 +100,7 @@ export default function Signup() {
                 otherMode: "Already a member?",
                 googleMode: "SignUp with Google",
               }}
-              signInType={signInType}
+              // signInType={signInType}
             />
             <div className="flex justify-center">
               <Image
@@ -144,7 +144,7 @@ export default function Signup() {
                   otherMode: "Already a member?",
                   googleMode: "SignUp with Google",
                 }}
-                signInType={signInType}
+                // signInType={signInType}
               />
             </div>
             <div className="flex self-end justify-start">

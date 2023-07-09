@@ -11,7 +11,7 @@ const Input: React.FC<InputProps> = ({ text, setField }) => {
       <label className="inputText">{text}</label>
       <input
         className="input"
-        type="text"
+        type={text}
         onChange={(e) => setField(e.target.value)}
       />
     </div>

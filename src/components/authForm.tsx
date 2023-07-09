@@ -17,6 +17,7 @@ type FormProps = {
     otherMode: string;
     googleMode: string;
   };
+  // signInType: string | undefined
 };
 
 const Form: React.FC<FormProps> = ({
@@ -29,6 +30,7 @@ const Form: React.FC<FormProps> = ({
   passwordError,
   route,
   text,
+  // signInType
 }) => {
   const router = useRouter();
 

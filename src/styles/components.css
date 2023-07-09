@@ -35,6 +35,7 @@
 .authButtonContainer {
   display: grid;
   grid-template-columns: auto auto;
+  column-gap: 0.5rem;
   grid-template-rows: auto;
   place-items: center;
 }
@@ -49,11 +50,17 @@
 
 .inputContainer {
   display: grid;
-  grid-column: auto;
+  grid-column: 100%;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 
 .inputText {
   font-weight: 700;
+}
+
+.input {
+  width: auto
 }
 
 .input:focus {
@@ -63,8 +70,7 @@
 .form {
   box-shadow: 0 25px 50px -12px white;
   padding: 0.75rem;
-  display: grid;
-  grid-row: auto;
+  /* grid-row: auto; */
   gap: 0.75rem;
 }
 
@@ -74,6 +80,8 @@
   padding-bottom: 0.5;
   padding-left: 1rem;
   padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 641px) {
